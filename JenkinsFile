@@ -10,7 +10,7 @@ node {
                                sudo docker rmi -f nginx || true
                                sudo docker rmi -f node || true
                                sudo docker images
-                               sudo docker build -t chhayang/devopsdemo --pull=true /var/lib/jenkins/jobs/DevOps-Demo-Pipeline-Angular-App'''
+                               sudo docker build -t chhayang/devopsdemo --pull=true .'''
   }
    
    stage('Push Docker Image') {
