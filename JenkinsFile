@@ -7,7 +7,9 @@ node {
    stage('Build Docker Image') {
      sh label: '', script: '''sudo docker images 
                               sudo docker rmi -f chhayang/devopsdemo || true
-                              sudo /usr/local/bin/docker images
+                              sudo docker rmi -f nginx || true
+                              sudo docker rmi -f node || true
+                              sudo docker images
                               sudo docker build -t chhayang/devopsdemo --pull=true /var/lib/jenkins/jobs/DevOps-Demo-Pipeline-Angular-App'''
   }
    
@@ -15,8 +17,8 @@ node {
     sh label: '', script: '''sudo docker push chhayang/devopsdemo
     '''
    }
-
+/* 
    stage('Send Email After Completion'){ 
    emailext body: '$DEFAULT_CONTENT', subject: '$DEFAULT_SUBJECT', to: 'chhayang.patel@ey.com'
-   }
+   } */
 }
