@@ -5,12 +5,12 @@ node {
       
    }
    stage('Build Docker Image') {
-     sh label: '', script: '''sudo docker images 
-                              sudo docker rmi -f chhayang/devopsdemo || true
-                              sudo docker rmi -f nginx || true
-                              sudo docker rmi -f node || true
-                              sudo docker images
-                              sudo docker build -t chhayang/devopsdemo --pull=true /var/lib/jenkins/jobs/DevOps-Demo-Pipeline-Angular-App'''
+     sh label: '', script: ''' sudo docker images 
+                               sudo docker rmi -f chhayang/devopsdemo || true
+                               sudo docker rmi -f nginx || true
+                               sudo docker rmi -f node || true
+                               sudo docker images
+                               sudo docker build -t chhayang/devopsdemo --pull=true /var/lib/jenkins/jobs/DevOps-Demo-Pipeline-Angular-App'''
   }
    
    stage('Push Docker Image') {
