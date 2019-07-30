@@ -6,5 +6,5 @@ RUN npm run build --prod
 
 # Stage 2
 FROM nginx
-COPY dist/DevOpsDemo /usr/share/nginx/html
-#COPY --from=node /app/dist/TestDocker /usr/share/nginx/html
+#COPY dist/DevOpsDemo /usr/share/nginx/html
+COPY --from=node /app/dist/DevOpsDemo /usr/share/nginx/html
