@@ -1,18 +1,10 @@
-FROM node:8.11.2-alpine
-
-WORKDIR /usr/src/app
-
-COPY package*.json ./
-
-RUN npm install
-
-RUN /bin/sh
-
+FROM node:8.11.2-alpine as node
+WORKDIR /app
 COPY . .
+RUN npm install
+RUN npm run build --prod
 
-RUN npm run build
-RUN npm install -g @angular/cli
-
-EXPOSE 4200
-
-CMD ng serve --host 0.0.0.0 --port 4200 --disable-host-check
+# Stage 2
+FROM nginx
+COPY dist/DevOpsDemo /usr/share/nginx/html
+#COPY --from=node /app/dist/TestDocker /usr/share/nginx/html
