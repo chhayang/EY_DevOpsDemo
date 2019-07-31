@@ -9,7 +9,7 @@ node {
                                sudo docker rmi -f chhayang/devopsdemo || true
                                sudo docker rmi -f nginx || true
                                sudo docker rmi -f node || true
-                               sudo docker rmi -f $(docker images -a -q) || true
+                               sudo docker rmi -f $(sudo docker images -a -q) || true
                                sudo docker images
                                sudo docker build -t chhayang/devopsdemo --pull=true .'''
   }
