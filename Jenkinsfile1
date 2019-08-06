@@ -1,0 +1,25 @@
+node {
+   stage('Preparation: Get Code from Git') { // for display purposes
+      // Get some code from a GitHub repository
+      git 'https://github.com/chhayang/EY_DevOpsDemo.git'
+      
+   }
+   stage('Build Docker Image') {
+     sh label: '', script: ''' sudo docker images 
+                               sudo docker rmi -f chhayang/devopsdemo || true
+                               sudo docker rmi -f nginx || true
+                               sudo docker rmi -f node || true
+                               sudo docker rmi -f $(sudo docker images -a -q) || true
+                               sudo docker images
+                               sudo docker build -t chhayang/devopsdemo --pull=true .'''
+  }
+   
+   stage('Push Docker Image') {
+    sh label: '', script: '''sudo docker push chhayang/devopsdemo
+    '''
+   }
+
+   stage('Send Email After Completion'){ 
+   // emailext body: '$DEFAULT_CONTENT', subject: '$DEFAULT_SUBJECT', to: 'chhayang.patel@ey.com, alim.williams@ey.com'
+   } 
+}
